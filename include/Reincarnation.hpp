@@ -9,11 +9,11 @@
 
 using namespace std;
 
-#define GENERATIONS 250
-#define POPULATION 25
+#define GENERATIONS 1000
+#define POPULATION 100
 #define MAX_LIFETIME 80
-#define NIRVANA_THRESHOLD 3
-#define WORST_SOULS 3
+#define NIRVANA_THRESHOLD 15
+#define WORST_SOULS 10
 #define SUSPENSION 2
 
 // HUMAN TYPES
@@ -35,6 +35,7 @@ private:
   Soul *best_guru;
   int max_lifetime;
   queue<Soul *> u; // Suspension queue
+  int living;
   int current_alive;
   vector<int> best_solution;
   int best_cost;
