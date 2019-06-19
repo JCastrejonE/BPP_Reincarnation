@@ -10,10 +10,10 @@
 using namespace std;
 
 #define GENERATIONS 1000
-#define POPULATION 100
-#define MAX_LIFETIME 80
-#define NIRVANA_THRESHOLD 15
-#define WORST_SOULS 10
+#define POPULATION 200
+#define MAX_LIFETIME 20
+#define NIRVANA_THRESHOLD 20
+#define WORST_SOULS 3
 #define SUSPENSION 2
 
 // HUMAN TYPES

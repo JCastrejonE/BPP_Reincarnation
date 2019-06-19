@@ -2,6 +2,7 @@
 #include <chrono>
 #include <fstream>
 #include "jarro2783/cxxopts.hpp"
+#include "best-fit.hpp"
 #include "Reincarnation.hpp"
 
 using namespace std;
@@ -11,6 +12,7 @@ int main(int argc, char **argv)
   auto gstart = chrono::steady_clock::now();
   int seed = 0;
   int n, b;
+  bool greedy = false;
   vector<int> items;
 
   istream *is = &cin;
@@ -23,7 +25,8 @@ int main(int argc, char **argv)
       .add_options()
       ("h, help", "Show help")
       ("f, file", "Input file to read instance (ignore to read from stdin) \nTip: use ./instance-gen -h to create test instances.", cxxopts::value<string>(), "input_file")
-      ("s, seed", "Seed to use. Default is 0", cxxopts::value<int>(), "N");
+      ("s, seed", "Seed to use. Default is 0", cxxopts::value<int>(), "N")
+      ("greedy", "Compute best-fit algorithm result.");
 
     auto result = options.parse(argc, argv);
     if (result.count("h"))
@@ -39,6 +42,10 @@ int main(int argc, char **argv)
     if (result.count("s"))
     {
       seed = result["s"].as<int>();
+    }
+    if (result.count("greedy"))
+    {
+      greedy = true;
     }
   }
   catch (const cxxopts::OptionException &e)
@@ -63,6 +70,9 @@ int main(int argc, char **argv)
     printf("%d, ", x);
   }
   printf("\nBins: %d\n", S.second);
+
+  if(greedy)
+    printf("\nBest-fit: %d\n\n", bestFit(items, items.size(), b));
 
   auto gend = chrono::steady_clock::now();
   printf("Total elapsed time: %lld\n", chrono::duration_cast<chrono::seconds>(gend - gstart).count());

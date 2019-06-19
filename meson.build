@@ -1,6 +1,6 @@
 project(
   'BPP_Reincarnation',
-  'cpp', default_options : ['cpp_std=c++11', 'buildtype=debug', 'warning_level=3'])
+  'cpp', default_options : ['cpp_std=c++11', 'buildtype=release', 'warning_level=1'])
 
 incdir = include_directories('include')
 
